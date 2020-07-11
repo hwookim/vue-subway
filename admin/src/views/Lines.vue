@@ -1,5 +1,5 @@
 <template>
-  <div id="line" class="flex justify-center md:py-10 lg:py-10 app-container">
+  <div id="lines" class="flex justify-center md:py-10 lg:py-10 app-container">
     <div class="max-w-md width-450px rounded bg-white shadow-lg p-6">
       <div>
         <div class="font-bold text-xl mb-4 relative w-full flex items-stretch">
@@ -30,7 +30,7 @@ import LineList from "../components/line/LineList";
 import LineModal from "../components/line/LineModal";
 
 export default {
-  name: "Line",
+  name: "Lines",
   components: {
     LineModal,
     LineList,

@@ -1,5 +1,5 @@
 <template>
-  <div id="edge" class="flex justify-center md:py-10 lg:py-10 app-container">
+  <div id="edges" class="flex justify-center md:py-10 lg:py-10 app-container">
     <div class="max-w-md w-full lg:width-450px rounded bg-white shadow-lg p-6">
       <div class="font-bold text-xl mb-4 relative w-full flex items-stretch">
         <div class="flex-1"></div>
@@ -42,6 +42,6 @@
 
 <script>
 export default {
-  name: "Edge",
+  name: "Edges",
 };
 </script>

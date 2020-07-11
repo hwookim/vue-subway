@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Admin from "../views/Admin";
-import Station from "../views/Station";
-import Line from "../views/Line";
-import Edge from "../views/Edge";
+import Stations from "../views/Stations";
+import Lines from "../views/Lines";
+import Edges from "../views/Edges";
 
 Vue.use(VueRouter);
 
@@ -20,18 +20,18 @@ const routes = [
   },
   {
     path: "/admin/stations",
-    name: "Station",
-    component: Station,
+    name: "Stations",
+    component: Stations,
   },
   {
     path: "/admin/lines",
-    name: "Line",
-    component: Line,
+    name: "Lines",
+    component: Lines,
   },
   {
     path: "/admin/edges",
-    name: "Edge",
-    component: Edge,
+    name: "Edges",
+    component: Edges,
   },
 ];
 
