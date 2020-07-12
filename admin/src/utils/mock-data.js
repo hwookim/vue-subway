@@ -38,19 +38,25 @@ const MOCK_LINES = [
     id: 1,
     name: "1호선",
     bgColor: "bg-blue-700",
-    stations: ["수원", "화서", "성균관대"],
+    start_time: "06:00:00",
+    end_time: "23:00:00",
+    interval_time: 10,
   },
   {
     id: 2,
     name: "2호선",
     bgColor: "bg-green-500",
-    stations: ["교대", "강남", "역삼", "선릉", "삼성"],
+    start_time: "06:00:00",
+    end_time: "23:00:00",
+    interval_time: 10,
   },
   {
     id: 3,
     name: "3호선",
     bgColor: "bg-orange-500",
-    stations: [],
+    start_time: "06:00:00",
+    end_time: "23:00:00",
+    interval_time: 10,
   },
 ];
 
