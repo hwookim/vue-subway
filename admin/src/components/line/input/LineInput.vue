@@ -10,24 +10,7 @@
         @input-end-time="inputEndTime"
         @input-interval-time="inputIntervalTime"
       />
-      <div id="subway-line-color-select-container" class="mb-4">
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="subway-line-color"
-        >
-          노선 색상
-        </label>
-        <input
-          placeholder="색상을 선택해주세요"
-          class="bg-gray-200 mb-4 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-          id="subway-line-color"
-          type="text"
-          disabled
-          v-model="selectedColor"
-        />
-      </div>
-      <color-selector @select-color="selectColor" />
-
+      <line-color-input @select-color="selectColor" />
       <div class="action-container flex justify-end pt-4">
         <button
           class="modal-close px-4 bg-transparent p-3 rounded text-gray-600 hover:bg-gray-100 hover:text-gray-700 mr-2 text-sm"
@@ -48,16 +31,16 @@
 </template>
 
 <script>
-import ColorSelector from "./ColorSelector";
 import LineNameInput from "./LineNameInput";
 import LineTimeInput from "./LineTimeInput";
+import LineColorInput from "./LineColorInput";
 
 export default {
   name: "LineInput",
   components: {
+    LineColorInput,
     LineTimeInput,
     LineNameInput,
-    ColorSelector,
   },
   data() {
     return {
