@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="bg-gray-200 h-screen">
+  <div
+    id="app"
+    class="bg-gray-200 h-screen"
+    :class="{ 'modal-active': isModalActive }"
+  >
     <navigator />
     <router-view />
   </div>
@@ -10,6 +14,11 @@ import Navigator from "./components/Navigator";
 export default {
   name: "App",
   components: { Navigator },
+  computed: {
+    isModalActive() {
+      return this.$store.state.isModalActive;
+    },
+  },
 };
 </script>
 

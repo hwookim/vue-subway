@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isModalActive: false,
     stations: [],
     stationId: 9,
     lines: [],
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     LOAD_LINE(state) {
       state.stations = MOCK_LINES;
+    },
+    TOGGLE_MODAL(state) {
+      state.isModalActive = !state.isModalActive;
     },
   },
   actions: {},

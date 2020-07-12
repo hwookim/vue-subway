@@ -9,6 +9,7 @@
             <button
               id="subway-line-create-btn"
               class="modal-open bg-transparent bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 text-sm px-3 py-1 rounded"
+              @click="openModal"
             >
               노선 추가
             </button>
@@ -35,6 +36,11 @@ export default {
     LineModal,
     LineList,
     LineInfo,
+  },
+  methods: {
+    openModal() {
+      this.$store.commit("TOGGLE_MODAL");
+    },
   },
 };
 </script>
