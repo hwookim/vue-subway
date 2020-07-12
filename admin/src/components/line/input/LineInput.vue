@@ -79,7 +79,7 @@ export default {
         intervalTime: this.intervalTime,
         bgColor: this.bgColor,
       };
-      this.$store.commit("ADD_LINE", line);
+      this.$store.dispatch("ADD_LINE", line);
       this.$store.commit("TOGGLE_MODAL");
     },
   },

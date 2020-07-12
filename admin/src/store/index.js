@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { MOCK_LINES } from "../utils/mock-data";
 import subwayApi from "../api/subway";
 
 Vue.use(Vuex);
@@ -18,15 +17,8 @@ export default new Vuex.Store({
     SET_STATION(state, stations) {
       state.stations = stations;
     },
-    LOAD_LINE(state) {
-      state.lines = MOCK_LINES;
-    },
-    ADD_LINE(state, line) {
-      const newLine = {
-        id: state.lineId++,
-        ...line,
-      };
-      state.lines.push(newLine);
+    SET_LINE(state, lines) {
+      state.lines = lines;
     },
     ADD_EDGE(state, edge) {
       const line = state.lines.find((line) => line.id === edge.lineId);
@@ -61,6 +53,18 @@ export default new Vuex.Store({
     async DELETE_STATION(context, id) {
       await subwayApi.station.delete(id);
       await context.dispatch("LOAD_STATION");
+    },
+    async LOAD_LINE(context) {
+      const lines = await subwayApi.line.getAll();
+      context.commit("SET_LINE", lines);
+    },
+    async ADD_LINE(context, line) {
+      await subwayApi.line.create(line);
+      await context.dispatch("LOAD_LINE");
+    },
+    async DELETE_LINE(context, id) {
+      await subwayApi.line.delete(id);
+      await context.dispatch("LOAD_LINE");
     },
   },
   modules: {},

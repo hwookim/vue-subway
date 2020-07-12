@@ -15,7 +15,7 @@ export default {
     LineItem,
   },
   created() {
-    this.$store.commit("LOAD_LINE");
+    this.$store.dispatch("LOAD_LINE");
   },
   computed: {
     lines() {

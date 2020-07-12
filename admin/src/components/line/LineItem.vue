@@ -7,6 +7,7 @@
     <span class="line-name">{{ line.name }}</span>
     <button
       class="hover:bg-gray-300 hover:text-gray-500 text-gray-300 px-1 rounded-full float-right"
+      @click.prevent="deleteLine"
     >
       <span class="mdi mdi-delete"></span>
     </button>
@@ -25,6 +26,11 @@ export default {
     line: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    deleteLine() {
+      this.$store.dispatch("DELETE_LINE", this.line.id);
     },
   },
 };
