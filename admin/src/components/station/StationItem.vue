@@ -20,10 +20,21 @@ export default {
       type: Object,
       required: true,
     },
+    lineId: {
+      type: Number,
+      required: false,
+    },
   },
   methods: {
     deleteStation() {
-      this.$store.commit("DELETE_STATION", this.station.id);
+      if (!this.lineId) {
+        this.$store.commit("DELETE_STATION", this.station.id);
+      } else {
+        this.$store.commit("DELETE_EDGE", {
+          lineId: this.lineId,
+          stationId: this.station.id,
+        });
+      }
     },
   },
 };
