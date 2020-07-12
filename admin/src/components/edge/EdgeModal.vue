@@ -16,31 +16,7 @@
         </div>
 
         <form class="mb-4">
-          <div class="relative w-full mt-3 mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2">
-              노선 선택
-            </label>
-            <div class="relative">
-              <select
-                id="line-select-options"
-                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-              >
-              </select>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
+          <edge-line-input @select-option="selectLine" />
           <div class="flex flex-wrap mb-10 w-full">
             <div class="w-5/12 h-12 text-gray-800">
               <label class="block text-gray-700 text-sm font-bold mb-2">
@@ -134,8 +110,17 @@
 </template>
 
 <script>
+import EdgeLineInput from "./input/EdgeLineInput";
 export default {
   name: "EdgeModal",
+  components: {
+    EdgeLineInput,
+  },
+  data() {
+    return {
+      lineId: null,
+    };
+  },
   computed: {
     isModalActive() {
       return this.$store.state.isModalActive;
@@ -144,6 +129,9 @@ export default {
   methods: {
     closeModal() {
       this.$store.commit("TOGGLE_MODAL");
+    },
+    selectLine(lineId) {
+      this.lineId = lineId;
     },
   },
 };
