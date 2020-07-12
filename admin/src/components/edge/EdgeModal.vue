@@ -21,31 +21,18 @@
             @select-pre-station="selectPreStation"
             @select-next-station="selectNextStation"
           />
-
           <div class="flex flex-wrap mb-10 w-full">
-            <div class="w-5/12 h-12 text-gray-800">
-              <label class="block text-gray-700 text-sm font-bold mb-2">
-                거리
-              </label>
-              <input
-                class="appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
-                id="distance"
-                type="number"
-                value="0"
-              />
-            </div>
+            <edge-info-input
+              :text="'거리'"
+              :info-type="'distance'"
+              @input-distance="inputDistance"
+            />
             <div class="w-2/12 h-12 text-gray-800"></div>
-            <div class="w-5/12 h-12 text-gray-800">
-              <label class="block text-gray-700 text-sm font-bold mb-2">
-                연결 시간
-              </label>
-              <input
-                class="appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
-                id="duration"
-                type="number"
-                value="0"
-              />
-            </div>
+            <edge-info-input
+              :text="'연결 시간'"
+              :info-type="'duration'"
+              @input-duration="inputDuration"
+            />
           </div>
 
           <div class="flex justify-end pt-4">
@@ -72,9 +59,11 @@
 <script>
 import EdgeLineInput from "./input/EdgeLineInput";
 import EdgeStationInput from "./input/EdgeStationInput";
+import EdgeInfoInput from "./input/EdgeInfoInput";
 export default {
   name: "EdgeModal",
   components: {
+    EdgeInfoInput,
     EdgeStationInput,
     EdgeLineInput,
   },
@@ -83,6 +72,8 @@ export default {
       lineId: null,
       preStationId: null,
       nextStationId: null,
+      distance: 0,
+      duration: 0,
     };
   },
   computed: {
@@ -102,6 +93,12 @@ export default {
     },
     selectNextStation(stationId) {
       this.nextStationId = stationId;
+    },
+    inputDistance(distance) {
+      this.distance = distance;
+    },
+    inputDuration(duration) {
+      this.duration = duration;
     },
   },
 };
