@@ -17,50 +17,10 @@
 
         <form class="mb-4">
           <edge-line-input @select-option="selectLine" />
-          <div class="flex flex-wrap mb-10 w-full">
-            <div class="w-5/12 h-12 text-gray-800">
-              <label class="block text-gray-700 text-sm font-bold mb-2">
-                이전역
-              </label>
-              <div class="relative">
-                <select
-                  id="previous-select-options"
-                  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                >
-                </select>
-                <div
-                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                >
-                  <svg
-                    class="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div
-              class="w-2/12 h-12 text-center text-gray-800 flex justify-center items-center relative top-28px"
-            >
-              <span
-                class="mdi mdi-arrow-left-right-bold relative bottom-6px text-lg"
-              ></span>
-            </div>
-            <div class="w-5/12 h-12 text-gray-800">
-              <label class="block text-gray-700 text-sm font-bold mb-2">
-                대상역
-              </label>
-              <select
-                id="next-station-select-options"
-                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-              >
-              </select>
-            </div>
-          </div>
+          <edge-station-input
+            @select-pre-station="selectPreStation"
+            @select-next-station="selectNextStation"
+          />
 
           <div class="flex flex-wrap mb-10 w-full">
             <div class="w-5/12 h-12 text-gray-800">
@@ -111,14 +71,18 @@
 
 <script>
 import EdgeLineInput from "./input/EdgeLineInput";
+import EdgeStationInput from "./input/EdgeStationInput";
 export default {
   name: "EdgeModal",
   components: {
+    EdgeStationInput,
     EdgeLineInput,
   },
   data() {
     return {
       lineId: null,
+      preStationId: null,
+      nextStationId: null,
     };
   },
   computed: {
@@ -132,6 +96,12 @@ export default {
     },
     selectLine(lineId) {
       this.lineId = lineId;
+    },
+    selectPreStation(stationId) {
+      this.preStationId = stationId;
+    },
+    selectNextStation(stationId) {
+      this.nextStationId = stationId;
     },
   },
 };
