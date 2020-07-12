@@ -28,7 +28,7 @@ export default {
   methods: {
     deleteStation() {
       if (!this.lineId) {
-        this.$store.commit("DELETE_STATION", this.station.id);
+        this.$store.dispatch("DELETE_STATION", this.station.id);
       } else {
         this.$store.commit("DELETE_EDGE", {
           lineId: this.lineId,

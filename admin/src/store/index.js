@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { MOCK_STATIONS, MOCK_LINES } from "../utils/mock-data";
+import { MOCK_LINES } from "../utils/mock-data";
+import subwayApi from "../api/subway";
 
 Vue.use(Vuex);
 
@@ -8,26 +9,14 @@ export default new Vuex.Store({
   state: {
     isModalActive: false,
     stations: [],
-    stationId: 9,
     lines: [],
-    lineId: 4,
   },
   mutations: {
     TOGGLE_MODAL(state) {
       state.isModalActive = !state.isModalActive;
     },
-    LOAD_STATION(state) {
-      state.stations = MOCK_STATIONS;
-    },
-    ADD_STATION(state, name) {
-      const newStation = {
-        id: state.stationId++,
-        name: name,
-      };
-      state.stations.push(newStation);
-    },
-    DELETE_STATION(state, id) {
-      state.stations = state.stations.filter((station) => station.id !== id);
+    SET_STATION(state, stations) {
+      state.stations = stations;
     },
     LOAD_LINE(state) {
       state.lines = MOCK_LINES;
@@ -60,6 +49,19 @@ export default new Vuex.Store({
       );
     },
   },
-  actions: {},
+  actions: {
+    async LOAD_STATION(context) {
+      const stations = await subwayApi.station.getAll();
+      context.commit("SET_STATION", stations);
+    },
+    async ADD_STATION(context, name) {
+      await subwayApi.station.create({ name });
+      await context.dispatch("LOAD_STATION");
+    },
+    async DELETE_STATION(context, id) {
+      await subwayApi.station.delete(id);
+      await context.dispatch("LOAD_STATION");
+    },
+  },
   modules: {},
 });

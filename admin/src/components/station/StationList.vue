@@ -17,7 +17,7 @@ export default {
     StationItem,
   },
   created() {
-    this.$store.commit("LOAD_STATION");
+    this.$store.dispatch("LOAD_STATION");
   },
   computed: {
     stations() {

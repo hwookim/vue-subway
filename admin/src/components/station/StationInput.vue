@@ -61,7 +61,7 @@ export default {
       if (this.validateName()) {
         return;
       }
-      this.$store.commit("ADD_STATION", this.inputValue);
+      this.$store.dispatch("ADD_STATION", this.inputValue);
       this.inputValue = "";
     },
   },
