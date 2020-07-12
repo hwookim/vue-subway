@@ -27,7 +27,7 @@ export default new Vuex.Store({
       state.stations = state.stations.filter((station) => station.id !== id);
     },
     LOAD_LINE(state) {
-      state.stations = MOCK_LINES;
+      state.lines = MOCK_LINES;
     },
     TOGGLE_MODAL(state) {
       state.isModalActive = !state.isModalActive;
