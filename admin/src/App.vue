@@ -12,3 +12,7 @@ export default {
   components: { Navigator },
 };
 </script>
+
+<style>
+@import "assets/css/admin-app.css";
+</style>
