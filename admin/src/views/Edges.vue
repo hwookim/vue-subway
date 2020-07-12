@@ -8,6 +8,7 @@
           <button
             id="subway-line-add-btn"
             class="modal-open bg-transparent bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 text-sm px-3 py-1 rounded"
+            @click="openModal"
           >
             구간 추가
           </button>
@@ -37,11 +38,21 @@
         </div>
       </div>
     </div>
+    <edge-modal />
   </div>
 </template>
 
 <script>
+import EdgeModal from "../components/edge/EdgeModal";
 export default {
   name: "Edges",
+  components: {
+    EdgeModal,
+  },
+  methods: {
+    openModal() {
+      this.$store.commit("TOGGLE_MODAL");
+    },
+  },
 };
 </script>
