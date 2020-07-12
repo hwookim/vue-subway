@@ -20,26 +20,6 @@ export default new Vuex.Store({
     SET_LINE(state, lines) {
       state.lines = lines;
     },
-    ADD_EDGE(state, edge) {
-      const line = state.lines.find((line) => line.id === edge.lineId);
-      const stationIndex =
-        line.stations.findIndex((station) => station.id === edge.preStationId) +
-        1;
-      const station = state.stations.find(
-        (station) => station.id === edge.nextStationId,
-      );
-      line.stations = [
-        ...line.stations.slice(0, stationIndex),
-        station,
-        ...line.stations.slice(stationIndex),
-      ];
-    },
-    DELETE_EDGE(state, { lineId, stationId }) {
-      const line = state.lines.find((line) => line.id === lineId);
-      line.stations = line.stations.filter(
-        (station) => station.id !== stationId,
-      );
-    },
   },
   actions: {
     async LOAD_STATION(context) {
@@ -55,7 +35,7 @@ export default new Vuex.Store({
       await context.dispatch("LOAD_STATION");
     },
     async LOAD_LINE(context) {
-      const lines = await subwayApi.line.getAll();
+      const lines = await subwayApi.line.getAllDetail();
       context.commit("SET_LINE", lines);
     },
     async ADD_LINE(context, line) {
@@ -64,6 +44,14 @@ export default new Vuex.Store({
     },
     async DELETE_LINE(context, id) {
       await subwayApi.line.delete(id);
+      await context.dispatch("LOAD_LINE");
+    },
+    async ADD_EDGE(context, { lineId, edge }) {
+      await subwayApi.line.addEdge(lineId, edge);
+      await context.dispatch("LOAD_LINE");
+    },
+    async DELETE_EDGE(context, { lineId, stationId }) {
+      await subwayApi.line.deleteEdge(lineId, stationId);
       await context.dispatch("LOAD_LINE");
     },
   },

@@ -30,7 +30,7 @@ export default {
       if (!this.lineId) {
         this.$store.dispatch("DELETE_STATION", this.station.id);
       } else {
-        this.$store.commit("DELETE_EDGE", {
+        this.$store.dispatch("DELETE_EDGE", {
           lineId: this.lineId,
           stationId: this.station.id,
         });

@@ -35,10 +35,8 @@ export default {
   components: {
     EdgeItem,
   },
-  created() {
-    this.$store.dispatch("LOAD_LINE");
-  },
-  mounted() {
+  async created() {
+    await this.$store.dispatch("LOAD_LINE");
     initSubwayLinesSlider();
   },
   computed: {

@@ -80,13 +80,12 @@ export default {
     },
     addEdge() {
       const edge = {
-        lineId: this.lineId,
         preStationId: this.preStationId,
         nextStationId: this.nextStationId,
         distance: this.distance,
         duration: this.duration,
       };
-      this.$store.commit("ADD_EDGE", edge);
+      this.$store.dispatch("ADD_EDGE", { lineId: this.lineId, edge: edge });
       this.$store.commit("TOGGLE_MODAL");
     },
   },
