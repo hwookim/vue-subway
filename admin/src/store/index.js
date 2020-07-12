@@ -39,6 +39,20 @@ export default new Vuex.Store({
       };
       state.lines.push(newLine);
     },
+    ADD_EDGE(state, edge) {
+      const line = state.lines.find((line) => line.id === edge.lineId);
+      const stationIndex =
+        line.stations.findIndex((station) => station.id === edge.preStationId) +
+        1;
+      const station = state.stations.find(
+        (station) => station.id === edge.nextStationId,
+      );
+      line.stations = [
+        ...line.stations.slice(0, stationIndex),
+        station,
+        ...line.stations.slice(stationIndex),
+      ];
+    },
     DELETE_EDGE(state, { lineId, stationId }) {
       state.lines.find(
         (line) => line.id === lineId,

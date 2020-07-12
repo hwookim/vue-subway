@@ -30,6 +30,7 @@
         type="submit"
         id="create-edge-button"
         class="px-4 bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 rounded text-white text-sm"
+        @click.prevent="addEdge"
       >
         확인
       </button>
@@ -76,6 +77,17 @@ export default {
     },
     inputDuration(duration) {
       this.duration = duration;
+    },
+    addEdge() {
+      const edge = {
+        lineId: this.lineId,
+        preStationId: this.preStationId,
+        nextStationId: this.nextStationId,
+        distance: this.distance,
+        duration: this.duration,
+      };
+      this.$store.commit("ADD_EDGE", edge);
+      this.$store.commit("TOGGLE_MODAL");
     },
   },
 };

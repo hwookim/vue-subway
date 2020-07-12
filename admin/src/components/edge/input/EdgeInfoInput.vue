@@ -9,6 +9,7 @@
       :id="infoType"
       v-model="inputValue"
       @keyup="inputInfo"
+      @change="inputInfo"
     />
   </div>
 </template>
