@@ -5,55 +5,11 @@
     </div>
     <form id="subway-line-create-form" class="mb-4">
       <line-name-input @input-name="inputName" />
-      <div class="flex mb-4">
-        <div class="w-1/3 pr-2">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="subway-start-time"
-          >
-            첫차 시간
-          </label>
-          <input
-            id="subway-start-time"
-            name="startTime"
-            type="text"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="첫차 시간"
-          />
-        </div>
-        <div class="w-1/3 pr-2">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="subway-end-time"
-          >
-            막차 시간
-          </label>
-          <input
-            id="subway-end-time"
-            name="endTime"
-            type="text"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="막차 시간"
-          />
-        </div>
-
-        <div class="w-1/3">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="subway-interval-time"
-          >
-            간격
-          </label>
-          <input
-            id="subway-interval-time"
-            name="intervalTime"
-            type="number"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="간격"
-          />
-        </div>
-      </div>
-
+      <line-time-input
+        @input-start-time="inputStartTime"
+        @input-end-time="inputEndTime"
+        @input-interval-time="inputIntervalTime"
+      />
       <div id="subway-line-color-select-container" class="mb-4">
         <label
           class="block text-gray-700 text-sm font-bold mb-2"
@@ -94,15 +50,21 @@
 <script>
 import ColorSelector from "./ColorSelector";
 import LineNameInput from "./LineNameInput";
+import LineTimeInput from "./LineTimeInput";
+
 export default {
   name: "LineInput",
   components: {
+    LineTimeInput,
     LineNameInput,
     ColorSelector,
   },
   data() {
     return {
       lineName: "",
+      startTime: "",
+      endTime: "",
+      intervalTime: "",
       selectedColor: null,
     };
   },
@@ -112,6 +74,15 @@ export default {
     },
     inputName(name) {
       this.lineName = name;
+    },
+    inputStartTime(startTime) {
+      this.startTime = startTime;
+    },
+    inputEndTime(endTime) {
+      this.endTime = endTime;
+    },
+    inputIntervalTime(intervalTime) {
+      this.intervalTime = intervalTime;
     },
     selectColor(color) {
       this.selectedColor = color;

@@ -13,7 +13,7 @@
       placeholder="노선 이름을 입력해주세요"
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       v-model="inputValue"
-      @keypress="inputName"
+      @keyup="inputName"
     />
   </div>
 </template>
