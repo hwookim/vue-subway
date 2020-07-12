@@ -22,6 +22,7 @@
           type="submit"
           id="submit-button"
           class="px-4 bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 rounded text-white text-sm"
+          @click.prevent="addLine"
         >
           확인
         </button>
@@ -48,7 +49,7 @@ export default {
       startTime: "",
       endTime: "",
       intervalTime: "",
-      selectedColor: null,
+      bgColor: null,
     };
   },
   methods: {
@@ -68,7 +69,18 @@ export default {
       this.intervalTime = intervalTime;
     },
     selectColor(color) {
-      this.selectedColor = color;
+      this.bgColor = color;
+    },
+    addLine() {
+      const line = {
+        name: this.lineName,
+        startTime: this.startTime,
+        endTime: this.endTime,
+        intervalTime: this.intervalTime,
+        bgColor: this.bgColor,
+      };
+      this.$store.commit("ADD_LINE", line);
+      this.$store.commit("TOGGLE_MODAL");
     },
   },
 };
