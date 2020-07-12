@@ -6,18 +6,27 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    stations: MOCK_STATIONS,
+    stations: [],
     stationId: 9,
-    lines: MOCK_LINES,
+    lines: [],
     lineId: 4,
   },
   mutations: {
+    LOAD_STATION(state) {
+      state.stations = MOCK_STATIONS;
+    },
     ADD_STATION(state, name) {
       const station = {
         id: state.stationId++,
         name: name,
       };
       state.stations.push(station);
+    },
+    DELETE_STATION(state, id) {
+      state.stations = state.stations.filter((station) => station.id !== id);
+    },
+    LOAD_LINE(state) {
+      state.stations = MOCK_LINES;
     },
   },
   actions: {},

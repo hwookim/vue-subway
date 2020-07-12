@@ -7,7 +7,7 @@
     <button
       class="hover:bg-gray-300 hover:text-gray-500 text-gray-300 px-1 rounded-full float-right"
     >
-      <span class="mdi mdi-delete"></span>
+      <span class="mdi mdi-delete" @click="deleteStation"></span>
     </button>
   </div>
 </template>
@@ -19,6 +19,11 @@ export default {
     station: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    deleteStation() {
+      this.$store.commit("DELETE_STATION", this.station.id);
     },
   },
 };

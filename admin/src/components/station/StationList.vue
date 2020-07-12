@@ -16,6 +16,9 @@ export default {
   components: {
     StationItem,
   },
+  created() {
+    this.$store.commit("LOAD_STATION");
+  },
   computed: {
     stations() {
       return this.$store.state.stations;

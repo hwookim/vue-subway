@@ -14,6 +14,9 @@ export default {
   components: {
     LineItem,
   },
+  created() {
+    this.$store.commit("LOAD_LINE");
+  },
   computed: {
     lines() {
       return this.$store.state.lines;
