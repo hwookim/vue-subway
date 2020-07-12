@@ -54,11 +54,10 @@ export default new Vuex.Store({
       ];
     },
     DELETE_EDGE(state, { lineId, stationId }) {
-      state.lines.find(
-        (line) => line.id === lineId,
-      ).stations = state.lines
-        .find((line) => line.id === lineId)
-        .stations.filter((station) => station.id !== stationId);
+      const line = state.lines.find((line) => line.id === lineId);
+      line.stations = line.stations.filter(
+        (station) => station.id !== stationId,
+      );
     },
   },
   actions: {},
