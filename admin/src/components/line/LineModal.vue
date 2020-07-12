@@ -25,10 +25,5 @@ export default {
       return this.$store.state.isModalActive;
     },
   },
-  methods: {
-    closeModal() {
-      this.$store.commit("TOGGLE_MODAL");
-    },
-  },
 };
 </script>
