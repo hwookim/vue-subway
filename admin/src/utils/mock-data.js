@@ -41,6 +41,7 @@ const MOCK_LINES = [
     start_time: "06:00:00",
     end_time: "23:00:00",
     interval_time: 10,
+    stations: [MOCK_STATIONS[0], MOCK_STATIONS[1], MOCK_STATIONS[2]],
   },
   {
     id: 2,
@@ -49,6 +50,13 @@ const MOCK_LINES = [
     start_time: "06:00:00",
     end_time: "23:00:00",
     interval_time: 10,
+    stations: [
+      MOCK_STATIONS[3],
+      MOCK_STATIONS[4],
+      MOCK_STATIONS[5],
+      MOCK_STATIONS[6],
+      MOCK_STATIONS[7],
+    ],
   },
   {
     id: 3,
