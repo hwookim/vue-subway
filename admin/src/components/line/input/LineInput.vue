@@ -1,24 +1,10 @@
 <template>
-  <div id="line-input " class="modal-content text-left px-8 py-4">
+  <div id="line-input" class="modal-content text-left px-8 py-4">
     <div class="flex justify-center items-center pb-3 pt-3">
       <p class="text-2xl font-bold">노선 정보</p>
     </div>
     <form id="subway-line-create-form" class="mb-4">
-      <div class="mb-4">
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="subway-line-name"
-        >
-          노선 이름
-        </label>
-        <input
-          id="subway-line-name"
-          name="name"
-          type="text"
-          placeholder="노선 이름을 입력해주세요"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-      </div>
+      <line-name-input @input-name="inputName" />
       <div class="flex mb-4">
         <div class="w-1/3 pr-2">
           <label
@@ -107,19 +93,25 @@
 
 <script>
 import ColorSelector from "./ColorSelector";
+import LineNameInput from "./LineNameInput";
 export default {
   name: "LineInput",
   components: {
+    LineNameInput,
     ColorSelector,
   },
   data() {
     return {
+      lineName: "",
       selectedColor: null,
     };
   },
   methods: {
     closeModal() {
       this.$store.commit("TOGGLE_MODAL");
+    },
+    inputName(name) {
+      this.lineName = name;
     },
     selectColor(color) {
       this.selectedColor = color;
